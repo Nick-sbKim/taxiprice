@@ -12,7 +12,9 @@
         /* ********************************************** */
         /* ✅ 상수 정의 */
         :root {
-            --input-gap: 5px;    /* 입력 필드와 라벨 사이 간격 줄임 */
+            /* 라벨 영역 너비를 정확히 지정하여, 입력창이 차지할 공간을 명확히 함 */
+            --label-width: 145px; 
+            --input-gap: 15px;    /* 라벨과 입력창 사이의 적절한 간격 복구 */
             --input-padding-vertical: 12px; 
             --mobile-breakpoint: 600px; 
         }
@@ -53,7 +55,7 @@
         /* 제목 */
         h1 {
             text-align: center;
-            margin-bottom: 10px; 
+            margin-bottom: 15px; /* 간격 복구 */
             font-size: 1.7em; 
             font-weight: 800; 
             color: #0277BD; 
@@ -65,7 +67,7 @@
             text-align: center;
             font-size: 1.0em; 
             color: #00838F;
-            margin-bottom: 20px; 
+            margin-bottom: 25px; /* 간격 복구 */
             padding: 0 5px;
             font-weight: 500;
             line-height: 1.6; 
@@ -76,13 +78,14 @@
         .input-group {
             display: flex;
             align-items: center;
-            margin-bottom: 15px; 
+            margin-bottom: 18px; /* 항목 간 간격 복구 */
             gap: var(--input-gap); 
             position: static; 
         }
         
         /* 모든 라벨 스타일 */
         .input-group label {
+            width: var(--label-width); /* ⭐ 라벨 너비 고정 (입력창 너비 통일의 기준점) */
             flex-shrink: 0;
             font-size: 1.25em; 
             font-weight: 800; 
@@ -97,14 +100,14 @@
             display: flex; 
             gap: var(--input-gap); 
             align-items: center;
+            /* 라벨 너비가 고정되었으므로, 이 래퍼는 남은 공간을 정확히 차지함 */
         }
         
         /* 일반 입력 칸 (Input) 스타일 통일 */
         .input-field-wrapper input[type="text"] {
             flex-grow: 1;
             padding: var(--input-padding-vertical) 15px; 
-            max-width: none; 
-            width: 100%; 
+            width: 100%; /* ⭐ 남은 공간 100% 차지 */
             
             border: 1px solid #B3E5FC; 
             border-radius: 8px; 
@@ -141,7 +144,7 @@
             flex-grow: 1; 
             position: relative; 
             display: flex;
-            align-items: center; /* ⭐ 모든 요소를 수직 중앙 정렬 */
+            align-items: center; 
             
             padding: var(--input-padding-vertical) 15px; 
             border: 1px solid #B3E5FC; 
@@ -151,7 +154,7 @@
             
             justify-content: space-between; 
             font-size: 1.1em; 
-            width: 100%; 
+            width: 100%; /* ⭐ 남은 공간 100% 차지 */
         }
         
         /* 1억/만원 고정 텍스트 스타일 */
@@ -161,7 +164,7 @@
             white-space: nowrap;
             z-index: 10; 
             font-size: 1em; 
-            line-height: 1; /* ⭐ 텍스트의 라인 높이 조정 */
+            line-height: 1; 
         }
         
         /* 실제 숫자 입력 필드 (#price) 스타일 */
@@ -188,13 +191,13 @@
             padding-right: 50px !important; 
             
             text-align: center;
-            line-height: calc(24px + var(--input-padding-vertical) * 2); /* ⭐ 입력 텍스트 수직 정렬을 위해 라인 높이 강제 조정 */
-            /* (24px는 font-size 1.1em일 때 대략적인 텍스트 높이) */
+            /* 입력 텍스트 수직 정렬 보완 */
+            line-height: calc(24px + var(--input-padding-vertical) * 2); 
         }
 
         /* ********************************************** */
 
-        /* 개인정보 동의 체크박스 영역 */
+        /* 개인정보 동의 체크박스 영역 (이전 레이아웃 유지) */
         .consent-group {
             display: flex;
             align-items: center;
@@ -215,7 +218,7 @@
             cursor: pointer;
         }
 
-        /* 동의 라벨 글씨 크기 조절 */
+        /* 동의 라벨 글씨 크기 조절 (한 줄 유지) */
         .consent-label {
             font-size: 1.0em; 
             margin: 0;
@@ -225,7 +228,7 @@
             flex-grow: 1; 
         }
 
-        /* 개인정보 상세 내용 박스 */
+        /* 개인정보 상세 내용 박스 (이전 레이아웃 유지) */
         .consent-details {
             background-color: #F8FFFF;
             color: #444;
@@ -252,7 +255,6 @@
             cursor: pointer;
             font-size: 1.8em; 
             font-weight: 800; 
-            transition: background-color 0.3s ease, transform 0.1s ease;
             letter-spacing: 1px;
             margin-top: 10px; 
         }
@@ -264,21 +266,23 @@
                 padding: 15px 15px; 
             }
 
-            /* 라벨과 입력 필드가 세로로 쌓이도록 변경 (유지) */
+            /* ⭐ 모바일에서 입력창 너비 통일을 위해 플렉스 방향을 다시 행(row)으로 복구 */
             .input-group {
-                flex-direction: column;
-                align-items: flex-start; 
+                flex-direction: row; /* ⭐ 모바일에서도 라벨과 입력창이 나란히 오도록 복구 */
+                align-items: center; 
                 margin-bottom: 12px; 
                 gap: 5px; 
             }
 
+            /* 모바일에서 라벨 너비를 조금 줄여 입력창 공간 확보 */
             .input-group label {
-                width: 100%; 
+                width: 110px; /* ⭐ 모바일에서 라벨 너비 조정 */
                 font-size: 1.1em; 
             }
 
             .input-field-wrapper {
-                width: 100%; 
+                width: auto; 
+                flex-grow: 1; 
                 gap: 0; 
             }
             
@@ -296,7 +300,6 @@
             /* 실제 숫자 입력 필드 폰트 크기 (유지) */
             #price {
                 font-size: 1.1em !important; 
-                /* ⭐ 모바일에서도 라인 높이 조정 적용 */
                 line-height: calc(24px + var(--input-padding-vertical) * 2) !important; 
             }
         }
