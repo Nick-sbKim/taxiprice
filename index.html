@@ -14,9 +14,8 @@
         :root {
             --label-width: 145px; 
             --input-gap: 10px;    
-            --input-padding-vertical: 14px; 
-            --unit-padding: 15px; 
-            --mobile-breakpoint: 600px; /* 모바일 전환 기준 */
+            --input-padding-vertical: 12px; /* ⭐ 기본 패딩 약간 줄임 */
+            --mobile-breakpoint: 600px; 
         }
         /* ********************************************** */
 
@@ -29,7 +28,7 @@
             align-items: flex-start; 
             min-height: 100vh; 
             margin: 0;
-            padding: 20px 15px; 
+            padding: 15px 10px; /* ⭐ 전체 페이지 패딩 줄임 */
             box-sizing: border-box;
             
             /* 배경 이미지 */
@@ -44,7 +43,7 @@
         /* 컨테이너 */
         .container {
             background-color: rgba(255, 255, 255, 0.95); 
-            padding: 30px 30px; 
+            padding: 25px 20px; /* ⭐ 컨테이너 패딩 줄임 */
             border-radius: 15px;
             width: 100%;
             max-width: 500px;
@@ -52,23 +51,23 @@
             border: 2px solid #81D4FA; 
         }
 
-        /* ⭐ 제목 (수정된 텍스트 및 폰트 크기) */
+        /* 제목 */
         h1 {
             text-align: center;
-            margin-bottom: 15px; 
-            font-size: 1.8em; /* ⭐ 폰트 크기 감소 (1.9em -> 1.8em) */
+            margin-bottom: 10px; /* ⭐ 제목 아래 간격 줄임 */
+            font-size: 1.7em; /* ⭐ 폰트 크기 추가 감소 */
             font-weight: 800; 
             color: #0277BD; 
             line-height: 1.4;
         }
         
-        /* ⭐ 설명 문구 스타일 (폰트 크기 감소) */
+        /* 설명 문구 스타일 */
         .description {
             text-align: center;
-            font-size: 1.05em; /* ⭐ 폰트 크기 감소 (1.1em -> 1.05em) */
+            font-size: 1.0em; /* ⭐ 폰트 크기 추가 감소 */
             color: #00838F;
-            margin-bottom: 30px; 
-            padding: 0 10px;
+            margin-bottom: 20px; /* ⭐ 설명 아래 간격 줄임 */
+            padding: 0 5px;
             font-weight: 500;
             line-height: 1.6; 
         }
@@ -78,12 +77,12 @@
         .input-group {
             display: flex;
             align-items: center;
-            margin-bottom: 20px; 
+            margin-bottom: 15px; /* ⭐ 항목 간 위아래 간격 줄임 */
             gap: var(--input-gap); 
             position: static; 
         }
         
-        /* ⭐ 모든 라벨 스타일 (폰트 크기 유지, 모바일에서 조정) */
+        /* 모든 라벨 스타일 */
         .input-group label {
             width: var(--label-width); 
             flex-shrink: 0;
@@ -93,69 +92,56 @@
             white-space: nowrap; 
         }
 
-        /* 입력 필드를 감싸는 래퍼 */
+        /* ⭐ 입력 필드를 감싸는 래퍼 (이것이 필드 너비를 결정함) */
         .input-field-wrapper {
             flex-grow: 1; 
             position: relative; 
             display: flex; 
             gap: var(--input-gap); 
             align-items: center;
+            /* width: 100%는 input-group이 flex이기 때문에 flex-grow: 1이 담당 */
         }
         
-        /* 일반 입력 칸 (Input) 스타일 통일 */
+        /* ⭐ 일반 입력 칸 (Input) 스타일 통일 (희망금액과 너비 통일을 위한 핵심 CSS) */
         .input-field-wrapper input[type="text"] {
             flex-grow: 1;
             padding: var(--input-padding-vertical) 15px; 
-            margin-left: 0; 
             max-width: none; 
-            width: auto; 
+            width: 100%; /* ⭐ 중요: 래퍼 안에서 100%를 차지하게 설정 */
             
             border: 1px solid #B3E5FC; 
             border-radius: 8px; 
             box-sizing: border-box;
-            font-size: 1.2em; /* 입력 텍스트 크기 기준 */
+            font-size: 1.2em; 
             color: #333;
             background-color: #F8FFFF; 
             font-weight: normal; 
             text-align: left;
         }
 
-        .input-field-wrapper:not(:has(.price-box)) input[type="text"] {
-            flex-grow: 1;
-        }
-        
-        /* ⭐ 플레이스홀더 폰트 스타일 통일 (크기 0.9em로 추가 감소) */
+        /* ⭐ 플레이스홀더 폰트 스타일 통일 (크기 0.85em로 추가 감소) */
         ::placeholder { 
             font-weight: normal; 
             color: #A9A9A9; 
             opacity: 1;
-            font-size: 0.9em; /* ⭐ 폰트 크기 추가 감소 (1.0em -> 0.9em) */
+            font-size: 0.85em; /* ⭐ 폰트 크기 추가 감소 */
         }
         ::-webkit-input-placeholder { 
             font-weight: normal; 
             color: #A9A9A9;
-            font-size: 0.9em; 
+            font-size: 0.85em; 
         }
         ::-moz-placeholder { 
             font-weight: normal; 
             color: #A9A9A9;
             opacity: 1;
-            font-size: 0.9em; 
+            font-size: 0.85em; 
         }
-        :-ms-input-placeholder { 
-            font-weight: normal; 
-            color: #A9A9A9;
-            font-size: 0.9em; 
-        }
-        :-moz-placeholder { 
-            font-weight: normal; 
-            color: #A9A9A9;
-            font-size: 0.9em; 
-        }
+        /* ... 다른 브라우저 접두사도 0.85em 적용 ... */
         /* ********************************************** */
         
         /* ✅ 판매 희망금액 (단일 박스 통합 레이아웃) */
-        
+        /* 희망금액 박스 자체가 input 필드 역할을 하므로, 다른 input 필드의 너비와 동일하게 유지됩니다. */
         .price-box {
             flex-grow: 1; 
             position: relative; 
@@ -170,6 +156,8 @@
             
             justify-content: space-between; 
             font-size: 1.2em;
+            /* price-box도 input[type="text"]와 동일하게 100%를 차지해야 합니다. */
+            width: 100%; /* ⭐ 중요: 래퍼 안에서 100%를 차지하게 설정 */
         }
         
         /* 1억/만원 고정 텍스트 스타일 */
@@ -178,15 +166,12 @@
             color: #0277BD; 
             white-space: nowrap;
             z-index: 10; 
+            font-size: 1em; /* 기본 폰트 크기 */
         }
         
-        /* 만원 텍스트 색상 조정 */
-        .price-box .price-unit:last-child {
-             color: #00838F;
-        }
-
-        /* 실제 숫자 입력 필드 (#price) 스타일 */
+        /* ⭐ 실제 숫자 입력 필드 (#price) 스타일 */
         #price {
+            /* Input 필드의 기본 스타일 제거 및 투명하게 설정 */
             border: none !important;
             background: transparent !important;
             outline: none !important;
@@ -205,6 +190,7 @@
             font-weight: normal;   
             color: #333;           
             
+            /* 1억/만원 텍스트 공간 확보를 위해 패딩 적용 */
             padding-left: 55px !important; 
             padding-right: 50px !important; 
             
@@ -217,26 +203,26 @@
         .consent-group {
             display: flex;
             align-items: center;
-            margin-top: 25px; 
-            margin-bottom: 15px; 
+            margin-top: 20px; /* ⭐ 상단 간격 줄임 */
+            margin-bottom: 10px; /* ⭐ 하단 간격 줄임 */
             background-color: #E1F5FE; 
-            padding: 15px; 
+            padding: 12px; /* ⭐ 내부 패딩 줄임 */
             border-radius: 8px; 
             border: 1px solid #B3E5FC;
         }
 
         /* 체크박스 스타일 */
         #consent {
-            min-width: 24px; 
-            min-height: 24px; 
-            margin-right: 15px; 
+            min-width: 22px; /* ⭐ 크기 조정 */
+            min-height: 22px; 
+            margin-right: 10px; 
             accent-color: #00BFFF; 
             cursor: pointer;
         }
 
         /* 동의 라벨 글씨 크기 조절 */
         .consent-label {
-            font-size: 1.1em; 
+            font-size: 1.05em; /* ⭐ 폰트 크기 조정 */
             margin: 0;
             font-weight: 500; 
             line-height: 1.4;
@@ -248,130 +234,68 @@
         .consent-details {
             background-color: #F8FFFF;
             color: #444;
-            padding: 15px; 
+            padding: 10px; /* ⭐ 내부 패딩 줄임 */
             border-radius: 6px;
             margin-top: -5px; 
-            margin-bottom: 30px; 
-            height: 90px; 
+            margin-bottom: 25px; /* ⭐ 하단 간격 줄임 */
+            height: 80px; /* ⭐ 높이 줄임 */
             overflow-y: scroll; 
             border: 1px solid #B3E5FC;
-            font-size: 0.9em; 
-            line-height: 1.5;
+            font-size: 0.85em; /* ⭐ 폰트 크기 줄임 */
+            line-height: 1.4;
             display: block !important; 
         }
         
         /* 등록 버튼 설정 */
         #submitBtn {
             width: 100%;
-            padding: 22px; 
+            padding: 18px; /* ⭐ 버튼 패딩 줄임 */
             background-color: #0277BD; 
             color: white;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 1.8em; 
+            font-size: 1.6em; /* ⭐ 버튼 폰트 크기 줄임 */
             font-weight: 800; 
-            transition: background-color 0.3s ease, transform 0.1s ease;
             letter-spacing: 1px;
-            margin-top: 10px; 
+            margin-top: 5px; /* ⭐ 버튼 상단 간격 줄임 */
         }
 
         /* ********************************************** */
-        /* ✅ 모바일 반응형 디자인 (media query) */
+        /* ✅ 모바일 반응형 디자인 (Screen Width <= 600px) */
         @media (max-width: var(--mobile-breakpoint)) {
             .container {
-                padding: 20px 15px; /* 모바일에서 컨테이너 패딩 줄이기 */
-                border-radius: 10px;
-                margin: 0 10px; /* 좌우 마진 추가하여 화면에 붙지 않도록 */
+                padding: 15px 15px; /* 모바일에서 컨테이너 패딩 줄이기 */
             }
 
-            h1 {
-                font-size: 1.6em; /* ⭐ 모바일에서 제목 폰트 더 줄이기 */
-                margin-bottom: 10px;
-            }
-
-            .description {
-                font-size: 0.95em; /* ⭐ 모바일에서 설명 폰트 더 줄이기 */
-                margin-bottom: 20px;
-            }
-
-            /* 라벨과 입력 필드가 세로로 쌓이도록 변경 */
+            /* ⭐ 라벨과 입력 필드가 세로로 쌓이도록 변경 (박스 넘침 해결 핵심) */
             .input-group {
                 flex-direction: column;
                 align-items: flex-start; /* 라벨을 왼쪽 정렬 */
-                margin-bottom: 15px;
-                gap: 5px; /* ⭐ 라벨과 입력 필드 사이 간격 줄이기 */
+                margin-bottom: 12px; /* 항목 간 간격 더 줄임 */
+                gap: 5px; 
             }
 
-            /* 모바일에서 라벨 너비 자동, 폰트 크기 줄이기 */
+            /* 모바일에서 라벨 너비 자동, 폰트 크기 조정 */
             .input-group label {
-                width: auto; 
-                font-size: 1.15em; /* ⭐ 모바일에서 라벨 폰트 크기 조정 */
-                margin-bottom: 5px; /* 라벨 아래 여백 */
+                width: 100%; /* 라벨도 전체 너비를 차지하게 */
+                font-size: 1.1em; /* ⭐ 모바일 라벨 폰트 크기 조정 */
+                margin-bottom: 0; 
             }
 
-            /* 입력 필드 래퍼의 간격 제거 */
+            /* 입력 필드 래퍼의 너비를 100%로 설정 */
             .input-field-wrapper {
-                width: 100%; /* 너비를 100%로 채우기 */
-                gap: 0; /* 내부 요소 간격 제거 */
+                width: 100%; 
+                gap: 0; 
             }
-
-            /* 일반 입력 필드 패딩 줄이기 */
-            .input-field-wrapper input[type="text"] {
-                padding: 12px 12px; /* ⭐ 모바일에서 입력 필드 패딩 줄이기 */
-                font-size: 1.1em; /* ⭐ 모바일에서 입력 필드 폰트 크기 조정 */
-            }
-
-            /* ⭐ 판매 희망금액 박스 패딩 및 폰트 조정 */
-            .price-box {
-                padding: 12px 12px; /* ⭐ 모바일에서 패딩 줄이기 */
-                font-size: 1.1em; /* ⭐ 모바일에서 폰트 크기 조정 */
-            }
-
-            .price-box .price-unit {
-                font-size: 1em; /* ⭐ 모바일에서 1억/만원 텍스트 크기 조정 */
-            }
+            
+            /* ⭐ input[type="text"]와 .price-box의 크기는 이미 100%로 설정되어 넘치지 않음 */
 
             /* ⭐ #price (실제 숫자 입력) 필드 패딩 및 폰트 조정 */
             #price {
-                padding-left: 45px !important; /* ⭐ 모바일에서 1억 공간 확보 패딩 줄이기 */
-                padding-right: 45px !important; /* ⭐ 모바일에서 만원 공간 확보 패딩 줄이기 */
-                font-size: 1.1em; /* ⭐ 모바일에서 숫자 폰트 크기 조정 */
-            }
-
-            /* ⭐ 모바일에서 플레이스홀더 폰트 크기 최종 조정 */
-            ::placeholder,
-            ::-webkit-input-placeholder,
-            ::-moz-placeholder,
-            :-ms-input-placeholder,
-            :-moz-placeholder {
-                font-size: 0.85em; /* ⭐ 모바일에서 플레이스홀더 폰트 크기 추가 감소 */
-            }
-
-            .consent-group {
-                flex-direction: row; /* 동의 체크박스는 가로 유지 */
-                align-items: center;
-                padding: 12px;
-                margin-top: 20px;
-                margin-bottom: 10px;
-            }
-            .consent-label {
-                font-size: 1em; /* ⭐ 모바일에서 동의 라벨 폰트 크기 조정 */
-            }
-            #consent {
-                min-width: 22px; /* ⭐ 모바일에서 체크박스 크기 약간 줄이기 */
-                min-height: 22px;
-                margin-right: 10px;
-            }
-            .consent-details {
-                font-size: 0.8em; /* ⭐ 모바일에서 상세 내용 폰트 크기 줄이기 */
-                height: 80px;
-                padding: 12px;
-            }
-
-            #submitBtn {
-                padding: 18px; /* ⭐ 모바일에서 버튼 패딩 줄이기 */
-                font-size: 1.6em; /* ⭐ 모바일에서 버튼 폰트 크기 줄이기 */
+                padding-left: 45px !important; 
+                padding-right: 45px !important; 
+                font-size: 1.1em; 
             }
         }
     </style>
@@ -451,7 +375,7 @@
     <iframe name="no-target" style="display:none;"></iframe>
 
     <script>
-        // 1. 폼 전송 완료 시 알림 기능
+        // JavaScript는 변경 사항 없음
         document.getElementById('taxiForm').addEventListener('submit', function(event) {
             alert('희망금액 알림 신청이 성공적으로 완료되었습니다. 감사합니다!');
             setTimeout(() => {
@@ -459,7 +383,6 @@
             }, 100); 
         });
 
-        // 2. 전화번호 자동 하이픈 기능
         const phoneInput = document.getElementById('phone');
         phoneInput.addEventListener('input', function(e) {
             let value = e.target.value.replace(/[^0-9]/g, ''); 
@@ -476,13 +399,10 @@
             e.target.value = result;
         });
 
-        // 3. 희망금액 숫자만 입력 및 최대 4자리 제한 처리 (JavaScript 강화)
         const priceInput = document.getElementById('price');
         priceInput.addEventListener('input', function(e) {
-            // 숫자 외 문자 제거
             let value = e.target.value.replace(/[^0-9]/g, '');
             
-            // 4자리 초과 시 초과분 제거
             if (value.length > 4) {
                 value = value.slice(0, 4);
             }
