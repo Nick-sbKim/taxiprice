@@ -12,8 +12,8 @@
         /* ********************************************** */
         /* ✅ 상수 정의 */
         :root {
-            --label-width: 110px;    /* ⭐ 라벨 너비 대폭 축소 (145px -> 110px) */
-            --input-gap: 10px;       /* ⭐ 간격 미세 조정 (5px -> 10px) */
+            --label-width: 110px;    /* 라벨 너비 축소 */
+            --input-gap: 10px;       /* 간격 미세 조정 */
             --input-padding-vertical: 12px; 
             --mobile-breakpoint: 600px; 
         }
@@ -84,7 +84,7 @@
         
         /* 모든 라벨 스타일 */
         .input-group label {
-            width: var(--label-width); /* ⭐ 라벨 너비 축소 적용 */
+            width: var(--label-width); 
             flex-shrink: 0;
             font-size: 1.25em; 
             font-weight: 800; 
@@ -194,14 +194,14 @@
 
         /* ********************************************** */
 
-        /* 개인정보 동의 체크박스 영역 (레이아웃 유지) */
+        /* 개인정보 동의 체크박스 영역 (하늘색 박스) */
         .consent-group {
             display: flex;
             align-items: center;
-            margin-top: 25px; 
-            margin-bottom: 15px; 
+            margin-top: 15px; /* ⭐ 상단 마진 축소 (25px -> 15px) */
+            margin-bottom: 10px; /* ⭐ 하단 마진 축소 (15px -> 10px) */
             background-color: #E1F5FE; 
-            padding: 15px; 
+            padding: 10px; /* ⭐ 패딩 축소 (15px -> 10px) */
             border-radius: 8px; 
             border: 1px solid #B3E5FC;
         }
@@ -225,20 +225,25 @@
             flex-grow: 1; 
         }
 
-        /* 개인정보 상세 내용 박스 (레이아웃 유지) */
+        /* 개인정보 상세 내용 박스 */
         .consent-details {
             background-color: #F8FFFF;
             color: #444;
-            padding: 15px; 
+            padding: 10px 15px 15px; /* ⭐ 상단 패딩 축소 (15px -> 10px) */
             border-radius: 6px;
             margin-top: -5px; 
-            margin-bottom: 30px; 
+            margin-bottom: 20px; /* ⭐ 하단 마진 축소 (30px -> 20px) */
             height: 90px; 
             overflow-y: scroll; 
             border: 1px solid #B3E5FC;
             font-size: 0.9em; 
             line-height: 1.5;
             display: block !important; 
+        }
+
+        /* 상세 내용 박스 내 첫번째 문단(제목)의 상단 여백 제거 */
+        .consent-details p:first-child {
+            margin-top: 0; /* ⭐ 텍스트 상단 여백 제거 */
         }
         
         /* 등록 버튼 설정 */
@@ -253,7 +258,8 @@
             font-size: 1.8em; 
             font-weight: 800; 
             letter-spacing: 1px;
-            margin-top: 10px; 
+            margin-top: 10px; /* ⭐ 상단 마진 축소 (20px -> 10px) */
+            margin-bottom: 5px; /* ⭐ 하단 마진 축소 */
         }
 
         /* ********************************************** */
@@ -271,7 +277,7 @@
             }
 
             .input-group label {
-                width: 80px; /* ⭐ 모바일에서 라벨 너비 추가 축소 (110px -> 80px) */
+                width: 80px; 
                 font-size: 1.1em; 
             }
 
