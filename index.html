@@ -452,7 +452,7 @@ margin-bottom: 0;
 .prev-btn {
     width: 80px; 
     padding: 15px 10px;
-    background-color: #CFD8DC; /* 이미지 속 회색 버튼 톤 */
+    background-color: #CFD8DC; 
     color: var(--text-color);
     border: none;
     border-radius: 10px;
@@ -476,7 +476,7 @@ margin-bottom: 0;
 #nextBtn, #submitBtn { 
     flex-grow: 1; 
     padding: 18px 20px; 
-    background-color: var(--main-color) !important; /* ✅ 파란색 버튼 색상 강제 적용 */
+    background-color: var(--main-color) !important; /* 파란색 버튼 색상 강제 적용 */
     color: white; 
     border: none; 
     border-radius: 10px; 
@@ -503,15 +503,14 @@ margin-bottom: 0;
 
 /* ✅ 면허 희망가격 모바일 최적화 (필드 너비 대폭 확장) */
 .unified-price-input { 
-    max-width: 100%; /* 모바일에서 가용 공간 최대로 활용 */
-    justify-content: center; /* 중앙 정렬 유지 */
+    max-width: 100%; 
+    justify-content: center; 
 }
 .unified-price-input input { 
-    min-width: 100px; /* 최소 너비를 충분히 확보 */
-    flex-grow: 3; /* input 필드에 대부분의 공간을 할당 */
-    max-width: 200px; /* 최대 너비 설정 (4자리 입력 후 여유 공간 충분) */
+    min-width: 100px; 
+    flex-grow: 3; 
+    max-width: 200px; 
 }
-
 
 /* 모바일 포커스 시 돋보기 크기 조정 */
 .data-input-field:focus {
@@ -544,11 +543,6 @@ target="hidden_iframe">
 <input type="hidden" name="fbzx" value="3762433657792349989">
 <input type="hidden" name="submissionTimestamp" value="-1">
 
-<input type="hidden" id="phoneHidden" name="entry.567198169" value="">
-<input type="hidden" id="carNumberHidden" name="entry.336296250" value="">
-<input type="hidden" id="consentHidden" name="entry.484357262" value="" required>
-<input type="hidden" name="entry.830537506" id="licensePriceHidden">
-
 <div class="step active" id="step1">
     <div class="step-content">
         <div class="section-title">1단계 : 판매희망가 입력</div>
@@ -559,7 +553,8 @@ target="hidden_iframe">
                     <div class="unified-price-input">
                         <span class="price-fixed-text">1억</span>
                         <input type="text"
-                            id="licensePriceInput"
+                                                        id="licensePriceInput"
+                            name="entry.830537506_display" 
                             placeholder="숫자입력"
                             inputmode="numeric"
                             maxlength="4"
@@ -586,7 +581,7 @@ target="hidden_iframe">
             <div class="input-field-wrapper">
                 <input type="text"
                     id="name"
-                    name="entry.404085379" 
+                                        name="entry.404085379" 
                     required
                     placeholder="성함 입력" class="data-input-field">
             </div>
@@ -597,8 +592,8 @@ target="hidden_iframe">
                 <div class="split-unit-wrapper">
                     <span class="phone-unit-box">010 -</span>
                     <input type="text"
-                        id="phone"
-                        name="phone_display"
+                                                id="phone"
+                        name="entry.567198169_display" 
                         required
                         placeholder="8자리 입력" inputmode="numeric"
                         maxlength="9"
@@ -614,14 +609,14 @@ target="hidden_iframe">
                     <button type="button" class="fixed-unit-button">서울</button>
                     <input type="text"
                         id="carNumPart1"
-                        name="car_num_part1_display"
+                        name="car_part1_display"
                         required
                         placeholder="2자리"
                         maxlength="2"
                         inputmode="numeric"
                         class="num-part data-input-field">
                     <div class="select-box car-hangul-box">
-                        <select id="carHangulSelect" required class="select-field">
+                        <select id="carHangulSelect" required class="select-field" name="car_hangul_display">
                             <option value="" disabled selected>선택</option>
                             <option value="아">아</option>
                             <option value="바">바</option>
@@ -631,7 +626,7 @@ target="hidden_iframe">
                     </div>
                     <input type="text"
                         id="carNumPart2"
-                        name="car_num_part2_display"
+                        name="car_part2_display"
                         required
                         placeholder="4자리"
                         maxlength="4"
@@ -640,11 +635,12 @@ target="hidden_iframe">
                 </div>
             </div>
         </div>
+        <input type="hidden" name="entry.336296250" id="carNumberHidden">
     </div>
     
     <div class="consent-section">
         <div class="consent-group">
-            <input type="checkbox" id="consent" required>
+                        <input type="checkbox" id="consent" required name="entry.484357262" value="예">
             <label for="consent" class="consent-label">개인정보 수집 및 이용에 동의합니다.</label>
         </div>
         <div class="consent-details">
@@ -661,7 +657,7 @@ target="hidden_iframe">
     <div class="footer-content">
         <div class="button-group">
             <button type="button" class="prev-btn" onclick="prevStep(2)">뒤로</button> 
-            <button type="submit" id="submitBtn">신청하기</button>
+                        <button type="submit" id="submitBtn">신청하기</button>
         </div>
       </div>
 </div>
@@ -678,106 +674,79 @@ let submitted = false;
 
 // 1단계 필드
 const licensePriceInput = document.getElementById('licensePriceInput');
-// Hidden 필드는 DOM에서 직접 가져와 사용
-const licensePriceHidden = document.getElementById('licensePriceHidden');
-
+// Hidden 필드는 이제 Forms ID를 직접 사용하지 않고, JS에서 값을 임시 저장할 때 사용
+// const licensePriceHidden = document.getElementById('licensePriceHidden'); // 사용하지 않음
 
 // 2단계 필드
 const nameInput = document.getElementById('name');
 const phoneInput = document.getElementById('phone');
-const phoneHidden = document.getElementById('phoneHidden');
 const carNumPart1 = document.getElementById('carNumPart1');
 const carNumPart2 = document.getElementById('carNumPart2');
 const carHangulSelect = document.getElementById('carHangulSelect');
 const carNumberHidden = document.getElementById('carNumberHidden');
-const consentCheckbox = document.getElementById('consent');
-const consentHidden = document.getElementById('consentHidden');
+const carForm = document.getElementById('carForm');
+
+// Forms ID 매핑 (HTML에서 name 속성에 붙인 suffix를 이용해 참조)
+const PRICE_ID = 'entry.830537506';
+const PHONE_ID = 'entry.567198169';
+const CAR_NUMBER_ID = 'entry.336296250';
 
 
 /**
-* 필드 값이 완료되었는지 확인하고 배경색을 업데이트합니다.
-* @param {HTMLElement} element - 입력 또는 선택 필드 요소.
-*/
-function checkCompletion(element) {
-let isCompleted = false;
-
-if (element.tagName === 'INPUT') {
-if (element.id === 'phone') {
-const phoneValue = element.value.replace(/[^0-9]/g, '');
-isCompleted = phoneValue.length === 8;
-} else if (element.id === 'carNumPart1') {
-isCompleted = element.value.trim().length === 2;
-} else if (element.id === 'carNumPart2') {
-isCompleted = element.value.trim().length === 4;
-} else if (element.id === 'name') {
-isCompleted = element.value.trim() !== '';
-} else if (element.id === 'licensePriceInput') {
-// 최대 4자리 검증
-isCompleted = element.value.trim() !== '' && !isNaN(parseInt(element.value.trim()));
-}
-} else if (element.tagName === 'SELECT') {
-isCompleted = element.value !== '' && element.options.length > 0 && !element.options[element.selectedIndex].disabled;
-}
-
-if (isCompleted) {
-element.classList.add('completed');
-} else {
-element.classList.remove('completed');
-}
-}
-
-/**
-* Select Box에 드롭다운 아이콘 표시를 제어합니다.
-* @param {HTMLElement} selectElement - Select 필드 요소.
-*/
-function toggleSelectArrow(selectElement) {
-const selectBox = selectElement.parentElement;
-if (!selectBox) return;
-
-if (selectElement.value && selectElement.options.length > 0 && !selectElement.options[selectElement.selectedIndex].disabled) {
-selectBox.classList.add('selected');
-} else {
-selectBox.classList.remove('selected');
-}
-}
-
-carHangulSelect.addEventListener('change', function() {
-toggleSelectArrow(this);
-checkCompletion(this);
-});
-
-
-// ************************************************************
-// ✅ 데이터 설정 핵심 함수 (중복 호출을 통해 안정성 확보)
-// ************************************************************
-function setHiddenFields() {
-    // 4-1. 희망가격 Hidden 필드 값 설정 (1억 [숫자]만원 형식)
-    licensePriceHidden.value = `1억 ${licensePriceInput.value.trim()}만원`;
-
-    // 4-2. 차량번호 Hidden 필드 값 설정 (서울[2자리][한글][4자리] 형식)
-    const part1Value = carNumPart1.value.trim();
-    const part2Value = carNumPart2.value.trim();
-    const hangulValue = carHangulSelect.value;
-    carNumberHidden.value = `서울${part1Value}${hangulValue}${part2Value}`;
-
-    // 4-3. 전화번호 Hidden 필드 값 설정 (010-[4자리]-[4자리] 형식)
+ * FormData 객체를 생성하여 데이터 누락 없이 Google Forms로 전송합니다.
+ * @param {HTMLFormElement} form - 폼 요소
+ */
+function submitFormData(form) {
+    const data = new FormData();
     const phoneValue = phoneInput.value.replace(/[^0-9]/g, '');
-    // 전화번호는 010-XXXX-XXXX 형식으로 포맷하여 저장
-    phoneHidden.value = '010-' + phoneValue.slice(0, 4) + '-' + phoneValue.slice(4);
+    
+    // 1. 성함 (Forms ID 직접 사용)
+    data.append(nameInput.name, nameInput.value.trim());
 
-    // 4-4. 개인정보 동의 Hidden 필드 값 설정
-    consentHidden.value = consentCheckbox.checked ? '예' : '아니오';
+    // 2. 가격 (가공하여 전송)
+    const priceValue = licensePriceInput.value.trim();
+    data.append(PRICE_ID, `1억 ${priceValue}만원`);
+
+    // 3. 전화번호 (가공하여 전송)
+    // Hidden 필드를 사용하지 않고 여기서 바로 최종 포맷을 만들어 전송합니다.
+    data.append(PHONE_ID, '010-' + phoneValue.slice(0, 4) + '-' + phoneValue.slice(4));
+
+    // 4. 차량번호 (가공하여 전송)
+    const carNum = `서울${carNumPart1.value.trim()}${carHangulSelect.value}${carNumPart2.value.trim()}`;
+    data.append(CAR_NUMBER_ID, carNum);
+
+    // 5. 동의 (Forms ID 직접 사용)
+    // 체크박스가 체크되었을 때만 전송됩니다.
+    if (document.getElementById('consent').checked) {
+        data.append(document.getElementById('consent').name, document.getElementById('consent').value);
+    }
+    
+    // 6. 기타 필수 Forms 필드 (pageHistory 등)
+    const inputs = form.querySelectorAll('input[type="hidden"]:not(#carNumberHidden)');
+    inputs.forEach(input => {
+        if (input.name) data.append(input.name, input.value);
+    });
+
+    // 폼 제출 로직 (iframe으로 비동기 제출)
+    const params = new URLSearchParams(data).toString();
+    const url = form.action + '?' + params;
+
+    // iframe을 통해 비동기 제출
+    const iframe = document.getElementById('hidden_iframe');
+    iframe.src = url;
+
+    submitted = true;
 }
 
 
 // ************************************************************
 // ✅ 폼 제출 이벤트 핸들러 (최종 제출 버튼 클릭 시)
 // ************************************************************
-document.getElementById('carForm').addEventListener('submit', function(event) {
-    // 1. 폼의 기본 제출 동작을 즉시 막습니다. (가장 중요)
+carForm.addEventListener('submit', function(event) {
+    // 1. 폼의 기본 제출 동작을 즉시 막습니다. (핵심)
     event.preventDefault(); 
 
-    // 🚀 2. 최종 유효성 검사
+    // 2. 유효성 검사
     if (!validateStep1(true)) {
         updateStep(1); 
         alert('1단계 희망가격을 먼저 정확히 입력해주세요.');
@@ -788,17 +757,8 @@ document.getElementById('carForm').addEventListener('submit', function(event) {
         return;
     }
 
-    // 🚀 3. 최종 제출 직전에 Hidden 필드에 최종 값 재설정 (누락 방지)
-    setHiddenFields();
-
-    // 🚀 4. 최종 제출 플래그 설정
-    submitted = true; 
-
-    // 🚀 5. 비동기 지연 후 폼 강제 제출 (안정성 극대화)
-    const form = this;
-    setTimeout(function() {
-        form.submit();
-    }, 100); // 0.1초 지연
+    // 3. FormData를 사용하여 데이터 처리 및 전송
+    submitFormData(this);
 });
 
 
@@ -809,97 +769,87 @@ document.getElementById('nextBtn').addEventListener('click', function(event) {
     event.preventDefault();
 
     if (validateStep1(false)) {
-        // 1단계 통과 시, 1단계 데이터는 미리 Hidden 필드에 설정
-        licensePriceHidden.value = `1억 ${licensePriceInput.value.trim()}만원`;
         updateStep(2);
     }
 });
 
 
 function updateStep(step) {
-currentStep = step;
+    currentStep = step;
 
-for (let i = 1; i <= totalSteps; i++) {
-const stepElement = document.getElementById(`step${i}`);
-if (i === currentStep) {
-stepElement.classList.add('active');
-} else {
-stepElement.classList.remove('active');
-}
-}
-document.querySelector('.container').scrollTop = 0;
-window.scrollTo(0, 0);
+    for (let i = 1; i <= totalSteps; i++) {
+        const stepElement = document.getElementById(`step${i}`);
+        if (i === currentStep) {
+            stepElement.classList.add('active');
+        } else {
+            stepElement.classList.remove('active');
+        }
+    }
+    document.querySelector('.container').scrollTop = 0;
+    window.scrollTo(0, 0);
 }
 
-// 기존 nextStep 함수는 이벤트 리스너로 대체됨 (HTML onclick 유지를 위해 남겨둠)
-function nextStep(step) { /* Do nothing */ } 
 
 function prevStep(step) {
-if (step === 2) {
-updateStep(1);
-}
+    if (step === 2) {
+        updateStep(1);
+    }
 }
 
 // **순서 변경에 따른 새로운 validateStep1 함수 (가격만)**
 function validateStep1(isSubmit = false) {
-    // 1. 면허판매 희망가격 유효성 검사
-    const priceValue = licensePriceInput.value.trim();
-    if (!priceValue || isNaN(parseInt(priceValue))) {
-        if (!isSubmit) alert('면허판매 희망가격을 숫자로 입력해주세요.');
-        if (!isSubmit) licensePriceInput.focus();
-        return false;
-    }
-    
-    return true;
+    const priceValue = licensePriceInput.value.trim();
+    if (!priceValue || isNaN(parseInt(priceValue))) {
+        if (!isSubmit) alert('면허판매 희망가격을 숫자로 입력해주세요.');
+        if (!isSubmit) licensePriceInput.focus();
+        return false;
+    }
+    return true;
 }
 
 // **순서 변경에 따른 새로운 validateStep2 함수 (연락처, 차량번호, 동의)**
 function validateStep2(isSubmit = false) {
-    // 1. 성함 유효성 검사
-    if (!nameInput.value.trim()) {
-        if (!isSubmit) alert('성함을 입력해주세요.');
-        if (!isSubmit) nameInput.focus();
-        return false;
-    }
-    
-    // 2. 전화번호 유효성 검사
-    const phoneValue = phoneInput.value.replace(/[^0-9]/g, '');
-    if (phoneValue.length !== 8) {
-        if (!isSubmit) alert('전화번호 뒷 8자리를 정확히 입력해주세요.');
-        if (!isSubmit) phoneInput.focus();
-        return false;
-    }
-    
-    // 3. 차량번호 유효성 검사
-    const part1Value = carNumPart1.value.trim();
-    const part2Value = carNumPart2.value.trim();
-    const hangulValue = carHangulSelect.value;
-    
-    if (part1Value.length !== 2 || !/^\d+$/.test(part1Value) || 
-        part2Value.length !== 4 || !/^\d{4}$/.test(part2Value) || 
-        !hangulValue) {
+    if (!nameInput.value.trim()) {
+        if (!isSubmit) alert('성함을 입력해주세요.');
+        if (!isSubmit) nameInput.focus();
+        return false;
+    }
+    
+    const phoneValue = phoneInput.value.replace(/[^0-9]/g, '');
+    if (phoneValue.length !== 8) {
+        if (!isSubmit) alert('전화번호 뒷 8자리를 정확히 입력해주세요.');
+        if (!isSubmit) phoneInput.focus();
+        return false;
+    }
+    
+    const part1Value = carNumPart1.value.trim();
+    const part2Value = carNumPart2.value.trim();
+    const hangulValue = carHangulSelect.value;
+    
+    if (part1Value.length !== 2 || !/^\d+$/.test(part1Value) || 
+        part2Value.length !== 4 || !/^\d{4}$/.test(part2Value) || 
+        !hangulValue) {
 
-        if (!isSubmit) alert('차량번호의 모든 부분(2자리, 문자, 4자리)을 정확히 입력하거나 선택해주세요.');
-        
-        if (part1Value.length !== 2) carNumPart1.focus();
-        else if (!hangulValue) carHangulSelect.focus();
-        else carNumPart2.focus();
-        
-        return false;
-    }
-    
-    // 4. 개인정보 동의 유효성 검사
-    if (!consentCheckbox.checked) {
-        if (!isSubmit) alert('개인정보 수집 및 이용에 동의해야 신청이 완료됩니다.');
-        if (!isSubmit) consentCheckbox.focus();
-        return false;
-    }
+        if (!isSubmit) alert('차량번호의 모든 부분(2자리, 문자, 4자리)을 정확히 입력하거나 선택해주세요.');
+        
+        if (part1Value.length !== 2) carNumPart1.focus();
+        else if (!hangulValue) carHangulSelect.focus();
+        else carNumPart2.focus();
+        
+        return false;
+    }
+    
+    if (!document.getElementById('consent').checked) {
+        if (!isSubmit) alert('개인정보 수집 및 이용에 동의해야 신청이 완료됩니다.');
+        if (!isSubmit) document.getElementById('consent').focus();
+        return false;
+    }
 
-    return true;
+    return true;
 }
 
 // ************************************************************
-// 입력 이벤트 핸들러 추가: 배경색 체크 및 정렬
+// 입력 이벤트 핸들러 (디자인 관련 로직)
 // ************************************************************
 const inputFields = document.querySelectorAll('.data-input-field');
 const selectFields = document.querySelectorAll('.select-field');
@@ -907,10 +857,8 @@ const selectFields = document.querySelectorAll('.select-field');
 inputFields.forEach(input => {
 input.addEventListener('input', function() { checkCompletion(this); });
 input.addEventListener('change', function() { checkCompletion(this); });
-// blur 시에만 배경색을 최종적으로 결정하고 폰트 크기를 복원
 input.addEventListener('blur', function() {
 checkCompletion(this);
-// blur 시에 돋보기 효과 해제에 필요한 스타일 복원 (CSS에서 .completed 클래스가 처리)
 this.style.fontSize = '';
 this.style.padding = '';
 this.style.height = '';
@@ -922,10 +870,8 @@ this.style.boxShadow = '';
 
 selectFields.forEach(select => {
 select.addEventListener('change', function() { checkCompletion(this); toggleSelectArrow(this); });
-// blur 시에만 배경색을 최종적으로 결정하고 폰트 크기를 복원
 select.addEventListener('blur', function() {
 checkCompletion(this);
-// blur 시에 돋보기 효과 해제에 필요한 스타일 복원 (CSS에서 .completed 클래스가 처리)
 this.style.fontSize = '';
 this.style.padding = '';
 this.style.height = '';
@@ -964,7 +910,6 @@ checkCompletion(e.target);
 
 document.addEventListener('DOMContentLoaded', function() {
 updateStep(1);
-// 초기 로딩 시 모든 필드의 완료 상태를 확인하여 배경색을 설정합니다.
 document.querySelectorAll('.data-input-field, .select-field').forEach(element => {
 checkCompletion(element);
 if (element.tagName === 'SELECT') {
