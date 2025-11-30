@@ -9,30 +9,29 @@
 @import url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquare.woff');
 
 /* ************************************************************ */
-/* ✅ 상수 정의 */
+/* ✅ 상수 정의 - 디자인 유지 */
 :root {
 --input-gap: 5px;
 --input-padding-vertical: 12px;
 --mobile-breakpoint: 600px;
-/* 입력 그룹 하단 마진 재조정 (항목 간 간격 35px로 유지) */
 --input-margin-bottom: 35px; 
 
-/* --- 🎨 Theme Colors --- */
---main-color: #1976D2;
+/* --- 🎨 Theme Colors --- (이미지 색상 유지) */
+--main-color: #5C7FB7; /* 버튼 주 색상 */
 --light-border-color: #BBDEFB;
 --text-color: #333;
 --secondary-text-color: #6D4C41;
---label-color: #0D47A1;
+--label-color: #0D47A1; /* 라벨 텍스트 색상 */
 --placeholder-color: #9E9E9E;
 --input-border: #90CAF9;
 --unit-bg-color: white;
 --unit-text-color: #333;
---car-unit-bg: #42A5F5;
+--car-unit-bg: #648DD7; /* 차량 단위 버튼 배경 */
 --car-unit-text: #FFFFFF;
 --unified-input-border: 1px solid var(--input-border);
 --content-padding: 20px;
 
-/* 미완료/대기 상태 배경색 (노란색 계열 유지) */
+/* 미완료/대기 상태 배경색 (노란색) */
 --input-default-bg: #FFF9C4;
 /* 완료/입력 상태 배경색 (흰색) */
 --input-filled-bg: white;
@@ -40,23 +39,18 @@
 --base-field-height: 50px;
 --label-height: 25px;
 
-/* 항목 이름 폰트 크기 확대 */
 --label-font-size: 1.15em;
 --base-font-size: 0.95em;
 --input-text-font-weight: 600;
 --label-font-weight: 700;
 
-/* 신규 추가: 시세 알림 버튼용 색상 */
 --accent-color: #FFEB3B;
-/* 신규 추가: 가격 입력 필드용 색상 */
 --price-input-border: #E0E0E0;
 
-/* 희망가격 텍스트 폰트 사이즈 (1억, 만원) */
 --price-text-font-size: 1.2em;
 
-/* 돋보기 효과 상수 */
---focus-font-size: 1.25em; /* 확대될 폰트 크기 */
---focus-padding: 18px 10px; /* 포커스 시 패딩 */
+--focus-font-size: 1.25em; 
+--focus-padding: 18px 10px; 
 }
 /* ************************************************************ */
 /* 기본 설정 */
@@ -70,24 +64,33 @@ min-height: 10vh;
 margin: 0;
 padding: 15px 10px;
 box-sizing: border-box;
-background-color: #EFEBE9;
+background-color: #EFEBE9; 
 overflow-y: auto;
 }
-.container { background-color: rgba(255, 255, 255, 0.95); padding: 0; border-radius: 15px; width: 100%; max-width: 500px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); border: 2px solid var(--light-border-color); overflow: hidden; }
+.container { 
+    background-color: rgba(255, 255, 255, 0.95); 
+    padding: 0; 
+    border-radius: 15px; 
+    width: 100%; 
+    max-width: 500px; 
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); 
+    border: 2px solid var(--light-border-color); 
+    overflow: hidden; 
+}
 .header-content { padding: 25px var(--content-padding) 10px; }
 h1 {
 text-align: center;
 margin-bottom: 10px;
 font-size: 1.5em;
 font-weight: 800;
-color: var(--main-color);
+color: var(--label-color); 
 line-height: 1.2;
 }
-/* ✅ 설명 문구 색상 변경 */
+/* ✅ 설명 문구 색상 */
 .description {
 text-align: center;
 font-size: 1.0em;
-color: red; /* 빨간색으로 변경 */
+color: red; 
 margin-bottom: 25px;
 padding: 0 5px;
 font-weight: 600;
@@ -95,9 +98,23 @@ line-height: 1.5;
 }
 .step { display: none; }
 .step.active { display: block; }
-.step-content { padding: 20px var(--content-padding); margin: 0 var(--content-padding) 20px var(--content-padding); border-radius: 10px; border: 1px solid var(--input-border); background-color: #F8F8F8; }
-/* 🔴 수정된 부분: "2단계 : 연락정보 입력" */
-.section-title { font-size: 1.2em; font-weight: 800; color: var(--label-color); margin-bottom: 25px; padding-bottom: 5px; border-bottom: 1px dashed #BDBDBD; }
+/* 스텝 콘텐츠 배경색 */
+.step-content { 
+    padding: 20px var(--content-padding); 
+    margin: 0 var(--content-padding) 20px var(--content-padding); 
+    border-radius: 10px; 
+    border: 1px solid var(--input-border); 
+    background-color: #F8F8F8; 
+}
+/* 섹션 제목 보더 색상 */
+.section-title { 
+    font-size: 1.2em; 
+    font-weight: 800; 
+    color: var(--label-color); 
+    margin-bottom: 25px; 
+    padding-bottom: 5px; 
+    border-bottom: 1px dashed #BDBDBD;
+}
 
 /* ----------------------------------- */
 /* 일반 입력 필드 스타일 (돋보기 효과 유지) */
@@ -105,7 +122,6 @@ line-height: 1.5;
 .input-group {
 display: flex;
 flex-wrap: wrap;
-/* 상수 적용 */
 margin-bottom: var(--input-margin-bottom);
 position: relative;
 align-items: center;
@@ -113,7 +129,6 @@ align-items: center;
 .input-group label {
 width: 100px;
 flex-shrink: 0;
-/* 폰트 크기 확대 */
 font-size: var(--label-font-size);
 font-weight: var(--label-font-weight);
 color: var(--label-color);
@@ -133,19 +148,15 @@ flex-grow: 1;
 .input-group.stack-label-group {
 flex-direction: column;
 align-items: flex-start;
-/* 하단 마진 증가 */
 margin-bottom: var(--input-margin-bottom);
 }
 .input-group.stack-label-group label {
 width: 100%;
-/* 라벨 높이 */
 height: var(--label-height); 
-/* ✅ 라벨과 입력 필드 간격 확대 (15px로 유지) */
 margin-bottom: 15px; 
 align-items: center;
 text-align: center;
 padding: 0;
-/* 폰트 크기 확대 */
 font-size: var(--label-font-size);
 }
 .input-group.stack-label-group .input-field-wrapper {
@@ -169,7 +180,7 @@ color: var(--text-color);
 appearance: none;
 min-width: 0;
 text-align: center;
-background-color: var(--input-default-bg);
+background-color: var(--input-default-bg); /* 노란색 */
 transition: background-color 0.3s, font-size 0.3s, padding 0.3s;
 }
 
@@ -193,7 +204,7 @@ padding: var(--focus-padding) !important;
 height: calc(var(--base-field-height) + 10px) !important; /* 높이 약간 확대 */
 line-height: calc(var(--base-field-height) + 10px) !important;
 font-weight: 800 !important;
-box-shadow: 0 0 10px rgba(25, 118, 210, 0.5); /* 쉐도우 추가 */
+box-shadow: 0 0 10px rgba(13, 71, 161, 0.5); /* 라벨 색상에 맞춰 쉐도우 색상 변경 */
 background-color: var(--input-default-bg) !important;
 }
 
@@ -201,12 +212,11 @@ background-color: var(--input-default-bg) !important;
 .data-input-field.completed,
 .select-field.completed {
 background-color: var(--input-filled-bg) !important;
-/* 1억 텍스트와 동일한 폰트 사이즈 적용 */
 font-size: var(--price-text-font-size) !important;
 padding: 0 10px !important;
 height: var(--base-field-height) !important;
 line-height: var(--base-field-height) !important;
-font-weight: 800 !important; /* 볼드하게 유지 */
+font-weight: 800 !important;
 }
 
 /* Select Box 드롭다운 아이콘 설정 */
@@ -242,7 +252,7 @@ outline: none;
 box-shadow: none;
 min-width: 100px;
 line-height: var(--base-field-height);
-background-color: var(--input-default-bg) !important;
+background-color: var(--input-default-bg) !important; /* 노란색 */
 }
 /* 전화번호 입력 필드 포커스 시 돋보기 효과 재적용 */
 .split-unit-wrapper input:focus {
@@ -261,7 +271,7 @@ font-weight: 800;
 flex-shrink: 0;
 padding: 0 10px;
 color: var(--car-unit-text);
-background-color: var(--car-unit-bg);
+background-color: var(--car-unit-bg); /* 진한 파란색 */
 font-size: var(--label-font-size);
 border-right: 1px solid var(--input-border);
 }
@@ -275,7 +285,7 @@ width: 100%;
 height: var(--base-field-height);
 }
 .car-number-split-wrapper .fixed-unit-button {
-background-color: var(--car-unit-bg);
+background-color: var(--car-unit-bg); /* 진한 파란색 */
 color: var(--car-unit-text);
 border: none;
 border-radius: 8px;
@@ -295,7 +305,7 @@ padding: 0 5px;
 text-align: center !important;
 line-height: var(--base-field-height);
 height: 100%;
-background-color: var(--input-default-bg);
+background-color: var(--input-default-bg); /* 노란색 */
 }
 #carNumPart1 { flex: 2; max-width: 80px; }
 #carNumPart2 { flex: 3; min-width: 90px; }
@@ -304,6 +314,7 @@ background-color: var(--input-default-bg);
 .car-number-split-wrapper .car-hangul-box select {
 text-align: left !important;
 padding-left: 10px !important;
+background-color: var(--input-default-bg); /* 노란색 */
 }
 
 /* 면허 판매 희망가격 관련 스타일 */
@@ -319,7 +330,8 @@ display: flex;
 align-items: center;
 height: var(--base-field-height);
 width: 100%;
-max-width: 250px;
+/* 데스크탑 뷰에서도 충분히 넓게 확보 */
+max-width: 350px; 
 border: none;
 border-radius: 0;
 overflow: hidden;
@@ -333,7 +345,6 @@ display: flex;
 align-items: center;
 justify-content: center;
 font-weight: 900;
-/* 1억 텍스트 폰트 크기 조정 */
 font-size: var(--price-text-font-size);
 color: black;
 background-color: transparent;
@@ -343,14 +354,15 @@ box-sizing: border-box;
 padding: 0 5px 0 0;
 }
 .unified-price-input input {
-width: 30%;
-flex-grow: 0;
-min-width: 40px;
+/* 너비 비율을 늘려 공간 확보 */
+width: 40%; 
+flex-grow: 1; /* 가용 공간을 최대로 사용 */
+min-width: 100px; /* 데스크탑 최소 너비 확보 */
 height: 100%;
 border: 1px solid var(--input-border);
 border-radius: 8px;
-background-color: var(--input-default-bg);
-padding: 0 3px;
+background-color: var(--input-default-bg); /* 노란색 */
+padding: 0 10px; /* 패딩 조정 */
 text-align: center;
 font-size: 1.2em;
 font-weight: 900;
@@ -358,19 +370,18 @@ box-sizing: border-box;
 }
 /* 가격 입력 필드 포커스 시 돋보기 효과 재적용 */
 .unified-price-input input:focus {
-font-size: 1.5em !important;
-padding: 0 3px !important;
-height: 100% !important;
-line-height: 100% !important;
+font-size: var(--focus-font-size) !important;
+padding: var(--focus-padding) !important;
+height: calc(var(--base-field-height) + 10px) !important;
+line-height: calc(var(--base-field-height) + 10px) !important;
 font-weight: 900 !important;
-box-shadow: 0 0 10px rgba(25, 118, 210, 0.5); /* 쉐도우 추가 */
+box-shadow: 0 0 10px rgba(13, 71, 161, 0.5); /* 라벨 색상에 맞춰 쉐도우 색상 변경 */
 background-color: var(--input-default-bg) !important;
 }
 
 /* 입력 완료 시 폰트 크기 조정 (희망가격 입력란) */
 .unified-price-input input.completed {
 background-color: var(--input-filled-bg) !important;
-/* 1억 텍스트와 동일하게 키움 */
 font-size: var(--price-text-font-size) !important;
 font-weight: 900 !important;
 }
@@ -382,7 +393,6 @@ display: flex;
 align-items: center;
 justify-content: center;
 font-weight: 900;
-/* 만원 텍스트 폰트 크기 조정 */
 font-size: var(--price-text-font-size);
 color: black;
 background-color: transparent;
@@ -440,14 +450,14 @@ margin-bottom: 0;
 /* --- ⬇️ 뒤로가기 버튼 스타일 ("뒤로" 텍스트 반영) ⬇️ --- */
 
 .prev-btn {
-    width: 80px; /* 버튼 너비 확장 */
+    width: 80px; 
     padding: 15px 10px;
-    background-color: #CFD8DC;
+    background-color: #CFD8DC; /* 이미지 속 회색 버튼 톤 */
     color: var(--text-color);
     border: none;
     border-radius: 10px;
-    font-weight: 800; /* 폰트 굵게 */
-    font-size: 1.3em; /* 폰트 크기 확대 */
+    font-weight: 800; 
+    font-size: 1.3em; 
     cursor: pointer;
     flex-shrink: 0;
     display: flex;
@@ -463,14 +473,27 @@ margin-bottom: 0;
 /* --- ⬆️ 뒤로가기 버튼 스타일 끝 ⬆️ --- */
 
 
-#nextBtn, #submitBtn { flex-grow: 1; padding: 18px 20px; background-color: var(--main-color); color: white; border: none; border-radius: 10px; font-size: 1.3em; font-weight: 800; cursor: pointer; box-shadow: 0 4px 10px rgba(25, 118, 210, 0.4); }
+#nextBtn, #submitBtn { 
+    flex-grow: 1; 
+    padding: 18px 20px; 
+    background-color: var(--main-color) !important; /* ✅ 파란색 버튼 색상 강제 적용 */
+    color: white; 
+    border: none; 
+    border-radius: 10px; 
+    font-size: 1.3em; 
+    font-weight: 800; 
+    cursor: pointer; 
+    box-shadow: 0 4px 10px rgba(92, 127, 183, 0.5); 
+}
 
-/* 모바일 반응형 디자인 (유지) */
+/* 모바일 반응형 디자인 */
 @media (max-width: var(--mobile-breakpoint)) {
+/* 세로 배열로 변경 */
 .input-group:not(.stack-label-group) { flex-direction: column; align-items: flex-start; }
 .input-group:not(.stack-label-group) label { width: 100%; margin-bottom: 5px; line-height: 1.2; height: auto; padding: 0; }
 .input-group:not(.stack-label-group) .input-field-wrapper { width: 100%; }
 
+/* 차량번호 입력 필드 최적화 */
 .car-number-split-wrapper { flex-wrap: nowrap; gap: 5px; }
 .car-number-split-wrapper .fixed-unit-button { width: 45px; font-size: var(--base-font-size); flex-grow: 0; }
 #carNumPart1 { max-width: none; flex: 2.5; }
@@ -478,23 +501,30 @@ margin-bottom: 0;
 #carNumPart2 { max-width: none; flex: 4; }
 .split-unit-wrapper input { min-width: 70px; }
 
-/* 면허 희망가격 모바일 최적화 */
-.unified-price-input { max-width: 100%; }
-.unified-price-input .price-fixed-text,
-.unified-price-input .price-unit-text { font-size: 1.0em; padding: 0 3px; }
-.unified-price-input input { font-size: 1.1em; }
+/* ✅ 면허 희망가격 모바일 최적화 (필드 너비 대폭 확장) */
+.unified-price-input { 
+    max-width: 100%; /* 모바일에서 가용 공간 최대로 활용 */
+    justify-content: center; /* 중앙 정렬 유지 */
+}
+.unified-price-input input { 
+    min-width: 100px; /* 최소 너비를 충분히 확보 */
+    flex-grow: 3; /* input 필드에 대부분의 공간을 할당 */
+    max-width: 200px; /* 최대 너비 설정 (4자리 입력 후 여유 공간 충분) */
+}
+
+
 /* 모바일 포커스 시 돋보기 크기 조정 */
 .data-input-field:focus {
-font-size: 1.1em !important;
-height: var(--base-field-height) !important;
-line-height: var(--base-field-height) !important;
+    font-size: 1.1em !important;
+    height: var(--base-field-height) !important;
+    line-height: var(--base-field-height) !important;
 }
 .unified-price-input input:focus {
-font-size: 1.2em !important;
+    font-size: 1.2em !important;
 }
-/* ✅ 모바일에서 완료된 필드 폰트 크기 조정 */
+/* 모바일에서 완료된 필드 폰트 크기 조정 */
 .data-input-field.completed {
-font-size: 1.1em !important;
+    font-size: 1.1em !important;
 }
 }
 </style>
@@ -530,7 +560,6 @@ target="hidden_iframe">
                         <span class="price-fixed-text">1억</span>
                         <input type="text"
                             id="licensePriceInput"
-                            name="license_price_display"
                             placeholder="숫자입력"
                             inputmode="numeric"
                             maxlength="4"
@@ -557,7 +586,7 @@ target="hidden_iframe">
             <div class="input-field-wrapper">
                 <input type="text"
                     id="name"
-                                        name="entry.404085379" 
+                    name="entry.404085379" 
                     required
                     placeholder="성함 입력" class="data-input-field">
             </div>
@@ -717,29 +746,11 @@ toggleSelectArrow(this);
 checkCompletion(this);
 });
 
+
 // ************************************************************
-// ✅ 수정된 SUBMIT 이벤트 리스너 (데이터 누락 방지 로직 최종 적용)
+// ✅ 데이터 설정 핵심 함수 (중복 호출을 통해 안정성 확보)
 // ************************************************************
-document.getElementById('carForm').addEventListener('submit', function(event) {
-    // 1. 폼의 기본 제출 동작을 즉시 막습니다.
-    event.preventDefault(); 
-
-    // 🚀 2. 1단계 유효성 검사
-    if (!validateStep1(true)) {
-        updateStep(1); // 1단계로 돌아감
-        alert('1단계 희망가격을 먼저 정확히 입력해주세요.');
-        return;
-    }
-
-    // 🚀 3. 2단계 유효성 검사
-    if (!validateStep2(true)) {
-        updateStep(2); // 2단계로 돌아감
-        // Alert은 validateStep2 내부에서 처리됨
-        return;
-    }
-
-    // 🚀 4. 모든 검사 통과 후, 전송 직전에 Hidden 필드에 최종 값 설정
-    
+function setHiddenFields() {
     // 4-1. 희망가격 Hidden 필드 값 설정 (1억 [숫자]만원 형식)
     licensePriceHidden.value = `1억 ${licensePriceInput.value.trim()}만원`;
 
@@ -751,14 +762,54 @@ document.getElementById('carForm').addEventListener('submit', function(event) {
 
     // 4-3. 전화번호 Hidden 필드 값 설정 (010-[4자리]-[4자리] 형식)
     const phoneValue = phoneInput.value.replace(/[^0-9]/g, '');
+    // 전화번호는 010-XXXX-XXXX 형식으로 포맷하여 저장
     phoneHidden.value = '010-' + phoneValue.slice(0, 4) + '-' + phoneValue.slice(4);
 
     // 4-4. 개인정보 동의 Hidden 필드 값 설정
     consentHidden.value = consentCheckbox.checked ? '예' : '아니오';
     
-    // 5. 최종 제출 플래그 설정 후, 폼을 명시적으로 제출합니다.
+    // 디버깅 목적으로 console.log를 추가할 수도 있으나, 현재는 제거
+}
+
+
+// ************************************************************
+// ✅ 폼 제출 이벤트 핸들러 (최종 제출 버튼 클릭 시)
+// ************************************************************
+document.getElementById('carForm').addEventListener('submit', function(event) {
+    // 1. 폼의 기본 제출 동작을 즉시 막습니다. (가장 중요)
+    event.preventDefault(); 
+
+    // 🚀 2. 최종 유효성 검사
+    if (!validateStep1(true)) {
+        updateStep(1); 
+        alert('1단계 희망가격을 먼저 정확히 입력해주세요.');
+        return;
+    }
+    if (!validateStep2(true)) {
+        updateStep(2); 
+        return;
+    }
+
+    // 🚀 3. 최종 제출 직전에 Hidden 필드에 최종 값 재설정 (누락 방지)
+    setHiddenFields();
+    
+    // 4. 최종 제출
     submitted = true; 
-    this.submit(); // 폼을 명시적으로 재전송 (Hidden Field에 값이 확실히 채워진 후)
+    this.submit(); 
+});
+
+
+// ************************************************************
+// ✅ '다음 단계로' 버튼 클릭 이벤트 핸들러 (1단계 완료 후)
+// ************************************************************
+document.getElementById('nextBtn').addEventListener('click', function(event) {
+    event.preventDefault();
+
+    if (validateStep1(false)) {
+        // 1단계 통과 시, 1단계 데이터는 미리 Hidden 필드에 설정
+        licensePriceHidden.value = `1억 ${licensePriceInput.value.trim()}만원`;
+        updateStep(2);
+    }
 });
 
 
@@ -777,13 +828,8 @@ document.querySelector('.container').scrollTop = 0;
 window.scrollTo(0, 0);
 }
 
-function nextStep(step) {
-if (step === 1) {
-if (validateStep1(false)) {
-updateStep(2);
-}
-}
-}
+// 기존 nextStep 함수는 이벤트 리스너로 대체됨 (HTML onclick 유지를 위해 남겨둠)
+function nextStep(step) { /* Do nothing */ } 
 
 function prevStep(step) {
 if (step === 2) {
