@@ -343,51 +343,61 @@ box-sizing: border-box;
 padding: 0 5px 0 0;
 }
 
-/* 🔴 핵심 수정: 입력 필드를 극도로 얇은 세로 막대 형태로 축소 */
+/* 🟢 디자인 복구: 입력 필드를 표준적인 넓이로 복원 (flex-grow: 1 사용) */
 .unified-price-input input {
-    /* 얇은 막대 모양으로 강제 설정 */
-    width: 5px !important;
-    min-width: 5px !important;
-    flex-grow: 0 !important; /* 공간 확장 방지 */
-    padding: 0 !important; /* 패딩 제거 */
-
+    width: auto; /* flex-grow와 함께 사용 */
+    flex-grow: 1; /* 남은 공간을 차지하도록 설정 (이미지 02bf1c.png와 동일) */
+    min-width: 40px; 
+    
     height: 100%;
     border: 1px solid var(--input-border);
-    border-radius: 2px !important; /* 작은 둥근 모서리 */
+    border-radius: 8px; /* 원래대로 복구 */
     background-color: var(--input-default-bg);
+    padding: 0 3px; /* 원래대로 복구 */
     text-align: center;
     font-size: 1.2em;
     font-weight: 900;
     box-sizing: border-box;
-    transition: all 0.2s; /* 부드러운 전환 효과 유지 */
+    transition: all 0.2s;
 }
 
-/* 입력 시 돋보기 효과 오버라이드 (얇은 디자인 유지) */
+/* 입력 시 돋보기 효과 오버라이드 (일반적인 포커스 효과 유지) */
 .unified-price-input input:focus {
-    font-size: 1.2em !important; /* 폰트 크기 유지 */
-    width: 5px !important; /* 얇은 너비 유지 */
-    min-width: 5px !important;
-    padding: 0 !important;
+    font-size: 1.5em !important;
+    padding: 0 3px !important;
     height: 100% !important;
     line-height: 100% !important;
     font-weight: 900 !important;
-    box-shadow: 0 0 5px rgba(25, 118, 210, 0.5); /* 쉐도우는 약간 유지 */
+    box-shadow: 0 0 10px rgba(25, 118, 210, 0.5);
     background-color: var(--input-default-bg) !important;
 }
 
-/* 입력 완료 시 얇은 디자인 유지 */
+/* 입력 완료 시 (일반적인 완료 스타일 유지) */
 .unified-price-input input.completed {
-    width: 5px !important; /* 얇은 너비 유지 */
-    min-width: 5px !important;
-    padding: 0 !important;
+    width: auto; /* 넓이 유지 */
+    min-width: 40px; 
+    padding: 0 3px;
     background-color: var(--input-filled-bg) !important;
-    font-size: 1.2em !important;
+    font-size: var(--price-text-font-size) !important;
     font-weight: 900 !important;
 }
 
-/* 🔴 핵심 수정: '만원' 텍스트를 숨겨 오른쪽 이미지와 동일하게 만듭니다. */
+
+/* 🟢 디자인 복구: '만원' 텍스트를 다시 보이도록 설정 */
 .unified-price-input .price-unit-text {
-    display: none !important; /* 만원 텍스트 숨기기 */
+    flex-shrink: 0;
+    height: 100%;
+    display: flex; /* 다시 보이도록 설정 */
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: var(--price-text-font-size);
+    color: black;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    box-sizing: border-box;
+    padding: 0 0 0 5px;
 }
 
 /* 동의 섹션 (유지) */
@@ -478,7 +488,8 @@ margin-bottom: 0;
 
 /* 면허 희망가격 모바일 최적화 */
 .unified-price-input { max-width: 100%; }
-.unified-price-input .price-fixed-text { font-size: 1.0em; padding: 0 3px; }
+.unified-price-input .price-fixed-text,
+.unified-price-input .price-unit-text { font-size: 1.0em; padding: 0 3px; }
 .unified-price-input input { font-size: 1.1em; }
 
 /* 모바일 포커스 시 돋보기 크기 조정 */
@@ -488,10 +499,11 @@ height: var(--base-field-height) !important;
 line-height: var(--base-field-height) !important;
 }
 .unified-price-input input:focus {
-font-size: 1.1em !important;
-width: 5px !important; /* 얇은 너비 유지 */
-min-width: 5px !important;
-padding: 0 !important;
+    /* 모바일에서도 넓이 복구 스타일 유지 */
+    font-size: 1.2em !important;
+    padding: 0 3px !important;
+    width: auto;
+    min-width: 40px;
 }
 
 /* ✅ 모바일에서 완료된 필드 폰트 크기 조정 */
