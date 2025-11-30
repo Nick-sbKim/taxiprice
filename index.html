@@ -663,7 +663,7 @@ target="hidden_iframe">
             <button type="button" class="prev-btn" onclick="prevStep(2)">뒤로</button> 
             <button type="submit" id="submitBtn">신청하기</button>
         </div>
-    </div>
+      </div>
 </div>
 
 </form>
@@ -767,8 +767,6 @@ function setHiddenFields() {
 
     // 4-4. 개인정보 동의 Hidden 필드 값 설정
     consentHidden.value = consentCheckbox.checked ? '예' : '아니오';
-    
-    // 디버깅 목적으로 console.log를 추가할 수도 있으나, 현재는 제거
 }
 
 
@@ -792,10 +790,15 @@ document.getElementById('carForm').addEventListener('submit', function(event) {
 
     // 🚀 3. 최종 제출 직전에 Hidden 필드에 최종 값 재설정 (누락 방지)
     setHiddenFields();
-    
-    // 4. 최종 제출
+
+    // 🚀 4. 최종 제출 플래그 설정
     submitted = true; 
-    this.submit(); 
+
+    // 🚀 5. 비동기 지연 후 폼 강제 제출 (안정성 극대화)
+    const form = this;
+    setTimeout(function() {
+        form.submit();
+    }, 100); // 0.1초 지연
 });
 
 
